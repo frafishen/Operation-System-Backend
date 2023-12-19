@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/71bae970-25ae-4753-83a2-b6e027c55117/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/jennyshenTest",
+    "appService.deploySubpath": "."
+}
