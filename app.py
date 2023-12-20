@@ -10,6 +10,7 @@ app.config['DEBUG'] = True
 @app.route('/')
 def index():
    print('Request for index page received')
+   print("test Hello")
    return render_template('index.html')
 
 @app.route('/favicon.ico')
