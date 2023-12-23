@@ -48,6 +48,7 @@ def handle_500(error):
     app.logger.error(f"500 error: {error}")  # Log the error
     return jsonify({"status": "failed", "message": "Internal server error"}), 500
 
+# p.10
 @app.route('/client', methods=['GET'])
 def get_client():
     conn = get_db_connection()
@@ -58,6 +59,7 @@ def get_client():
     result = [dict(row) for row in data]
     return jsonify(result)
 
+# p.11 (revenue)
 @app.route('/client/<id>', methods=['GET'])
 def get_company_sales(id):
     conn = get_db_connection()
@@ -77,7 +79,7 @@ def get_company_sales(id):
     return jsonify({'sales revenue': result, 'growth rates': growth_rates})
 
 
-# inventory
+# p.6
 @app.route('/inventory', methods=['GET'])
 def get_inventory():
     conn = get_db_connection()
@@ -91,6 +93,7 @@ def get_inventory():
     result = [dict(row) for row in data]
     return jsonify(result)
 
+# p.6 上面的forecasting圖
 @app.route('/inventory/<id>', methods=['GET'])
 def get_inventory_sales_prediction(id):
     conn = get_db_connection()
@@ -108,6 +111,7 @@ def get_inventory_sales_prediction(id):
 
 
 # product order progress
+# p.8
 @app.route('/product_order_progress', methods=['GET'])
 def get_product_orders():
     conn = get_db_connection()
@@ -129,6 +133,7 @@ def get_product_orders():
     result = [dict(row) for row in data]
     return jsonify(result)
 
+# p.8 右上角指定種類，比如PCB
 @app.route('/product_order_progress/<product_type>', methods=['GET'])
 def get_certain_type_product_orders(product_type):
     conn = get_db_connection()
@@ -157,6 +162,7 @@ def get_certain_type_product_orders(product_type):
     result = [dict(row) for row in data]
     return jsonify(result)
 
+# p.8 指定訂單編號跟料號看上面的進度
 @app.route('/product_order_progress/<id>/<product_id>', methods=['GET'])
 def get_product_order_progress(id, product_id):
     conn = get_db_connection()
@@ -173,6 +179,7 @@ def get_product_order_progress(id, product_id):
 
 
 # material order progress
+# p.7
 @app.route('/material_order_progress', methods=['GET'])
 def get_material_orders():
     conn = get_db_connection()
@@ -196,6 +203,7 @@ def get_material_orders():
     result = [dict(row) for row in data]
     return jsonify(result)
 
+# p.7上面的指定訂單編號的指定原物料的stage
 @app.route('/material_order_progress/<id>/<material_id>', methods=['GET'])
 def get_material_order_progress(id, material_id):
     conn = get_db_connection()
