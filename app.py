@@ -31,7 +31,7 @@ def handle_500(error):
 @app.route('/client/<id>/sgr', methods=['GET'])
 def get_company_sales(id):
     conn = get_db_connection()
-    query = '''SELECT s.sales_date, SUM(p.price * s.saled_quantity) AS total_sales
+    query = '''SELECT s.sales_date, SUM(p.price * s.sold_quantity) AS total_sales
             FROM sales s
             JOIN product p ON s.product_id = p.product_id
             GROUP BY s.sales_date
@@ -47,7 +47,7 @@ def get_company_sales(id):
     return jsonify({'sales revenue': result, 'growth rates': growth_rates})
 
 @app.route('/client/<id>/clv', methods=['GET'])
-def get_customer_lifetime_value(client_id):
+def get_customer_lifetime_value(id):
     conn = get_db_connection()
     query = f'SELECT c.clv, c.avg_monthly_spend, c.avg_lifespan ' \
             f'FROM client c ' \
