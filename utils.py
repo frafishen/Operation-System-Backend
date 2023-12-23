@@ -19,9 +19,6 @@ def calculate_customer_lifetime_value(customer_data):
     return clv
 
 
-
-# ============================================================
-
 def form_pert_chart_tree(order_data):
 
     info = {
@@ -85,10 +82,35 @@ def form_pert_chart_tree(order_data):
 
     return info
 
-def calculate_forcasting_data(sales_data):
+#moving average method
+def calculate_forcasting_data(inventory_data):
+    n = len(data)
+    window_size = 12
 
-    return 0;
+    forecasted_data = []
+    for i in range(n - window_size + 1):
+        window = data[i:i + window_size]
+        average = sum(window) / window_size
+        forecasted_data.append(average)
 
-def calculate_avg_purchase_time(customer_data):
+    return forecasted_data
 
-    return 0;
+
+def calculate_average_purchase_time(purchase_dates):
+    n = len(purchase_dates)
+
+    total_time = 0
+    for i in range(1, n):
+        # 將購買日期轉換為datetime對象，以便計算時間差
+        date_format = "%Y-%m-%d"  # 根據實際日期格式調整
+        purchase_date_i = datetime.strptime(purchase_dates[i], date_format)
+        purchase_date_prev = datetime.strptime(purchase_dates[i - 1], date_format)
+
+        # 計算時間差
+        time_difference = purchase_date_i - purchase_date_prev
+        total_time += time_difference.days  # 假設以天為單位
+
+    # 計算平均購買時間
+    average_purchase_time = total_time / (n - 1)
+
+    return average_purchase_time

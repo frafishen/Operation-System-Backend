@@ -71,9 +71,6 @@ def get_client_clv(client_id):
 
     return jsonify({'clv': result})
 
-
-
-
 #Pert Chart
 @app.route('/order/<id>/pert_chart', methods=['GET'])
 def get_pert_chart(id):
